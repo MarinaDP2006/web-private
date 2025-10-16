@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - TRON Universe</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/galeria.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">T</div>
+                    <h1>GALERÍA TRON</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="#wallpapers">Fondos de Pantalla</a></li>
+                        <li><a href="#concept-art">Concept Art</a></li>
+                        <li><a href="#personajes">Pósters</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+                    <button class="btn btn-primary" id="login-btn">Login</button>
+                    <button class="btn btn-secondary" id="register-btn">Registro</button>
+                    <div id="user-info" style="display: none;">
+                        <span id="username-display"></span>
+                        <button class="btn btn-secondary" onclick="logout()">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h2>Galería Visual de TRON</h2>
+                <p>Explora la increíble arte conceptual, wallpapers y imágenes del universo TRON. <strong>Las imágenes no están disponibles para descarga.</strong></p>
+            </section>
+
+            <!-- Filtros -->
+            <section class="filters-section">
+                <h3 class="section-subtitle">Filtros de Búsqueda</h3>
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="movie-filter">Película:</label>
+                        <select id="movie-filter" class="filter-select">
+                            <option value="all">Todas las películas</option>
+                            <option value="tron-1982">TRON 1982</option>
+                            <option value="tron-legacy">TRON: Legacy</option>
+                            <option value="tron-ares">TRON: Ares</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="category-filter">Categoría:</label>
+                        <select id="category-filter" class="filter-select">
+                            <option value="all">Todas las categorías</option>
+                            <option value="wallpapers">Wallpapers</option>
+                            <option value="concept-art">Concept Art</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="source-filter">Fuente:</label>
+                        <select id="source-filter" class="filter-select">
+                            <option value="all">Todas las fuentes</option>
+                            <option value="official">Oficial</option>
+                            <option value="fan-art">Fan Art</option>
+                            <option value="concept">Concept Art</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary filter-btn" onclick="applyFilters()">
+                        <span class="btn-icon">🔍</span>
+                        Aplicar Filtros
+                    </button>
+                    <button class="btn btn-secondary filter-btn" onclick="resetFilters()">
+                        <span class="btn-icon">🔄</span>
+                        Limpiar
+                    </button>
+                </div>
+            </section>
+
+            <!-- Galería -->
+            <section class="gallery-section">
+                <div class="gallery-grid" id="gallery-grid">
+                    <!-- Las imágenes se cargan dinámicamente -->
+                </div>
+            </section>
+
+            <!-- Información de Uso -->
+            <section class="usage-info">
+                <div class="usage-icon">🔒</div>
+                <h3>Política de Imágenes</h3>
+                <p>Las imágenes mostradas en esta galería son propiedad de Disney y están protegidas por derechos de autor. Solo se muestran con fines educativos y de referencia. Está prohibida la descarga y distribución no autorizada.</p>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal para imagen ampliada -->
+    <div class="modal" id="image-modal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h2 id="modal-title">Imagen</h2>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="toggleProtection()">
+                        <span id="protection-icon">👁️</span>
+                        <span id="protection-text">Ver Protección</span>
+                    </button>
+                    <button class="close-modal">&times;</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="protected-image-container">
+                    <img id="modal-image" src="" alt="" class="protected-image">
+                    <div class="protection-overlay active" id="protection-overlay">
+                        <div class="protection-content">
+                            <div class="protection-icon">🔒</div>
+                            <div class="protection-text">Imagen Protegida</div>
+                            <div class="protection-subtext">Descarga deshabilitada</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-info">
+                    <div class="image-meta">
+                        <div class="meta-item">
+                            <strong>Descripción:</strong>
+                            <span id="image-description"></span>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Película:</strong>
+                            <span id="image-movie"></span>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Categoría:</strong>
+                            <span id="image-category"></span>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Fuente:</strong>
+                            <span id="image-source"></span>
+                        </div>
+                    </div>
+                    <div class="protection-notice">
+                        <div class="notice-icon">🚫</div>
+                        <div class="notice-text">
+                            <strong>Descarga deshabilitada</strong>
+                            <span>Esta imagen está protegida por derechos de autor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TRON Universe</h3>
+                    <p>Explora el universo visual de TRON</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="tron-1982.html">TRON 1982</a></li>
+                        <li><a href="tron-legacy.html">TRON: Legacy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/galeria.js"></script>
+</body>
+</html>

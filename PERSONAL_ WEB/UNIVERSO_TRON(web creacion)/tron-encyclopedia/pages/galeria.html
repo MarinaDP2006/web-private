@@ -1,0 +1,336 @@
+<!-- Imágenes o vídeos -->
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería</title>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">TRON ENCYCLOPEDIA</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">INICIO</a></li>
+                    <li><a href="tron-1982.html">TRON 1982</a></li>
+                    <li><a href="legacy.html">TRON: LEGACY</a></li>
+                    <li><a href="ares.html">TRON: ARES</a></li>
+                    <li><a href="galeria.html" class="active">GALERÍA</a></li>
+                    <li><a href="buscar.html">BUSCAR</a></li>
+                    <li><a href="admin.html">ADMIN</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main>
+        <section class="gallery-hero">
+            <h1 class="gallery-title">GALERÍA TRON</h1>
+            <p class="gallery-subtitle">Explora la evolución visual del universo TRON a través de posters, concept art y material promocional de las tres películas.</p>
+        </section>
+
+        <!-- Filtros -->
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">Todas</button>
+            <button class="filter-btn" data-filter="tron-1982">TRON 1982</button>
+            <button class="filter-btn" data-filter="tron-legacy">TRON: Legacy</button>
+            <button class="filter-btn" data-filter="tron-ares">TRON: Ares</button>
+            <button class="filter-btn" data-filter="posters">Posters</button>
+            <button class="filter-btn" data-filter="concept-art">Concept Art</button>
+        </div>
+
+        <!-- Grid de Galería -->
+        <div class="gallery-grid" id="gallery-container">
+            <!-- TRON 1982 -->
+            <div class="gallery-item" data-category="tron-1982 posters" data-index="0">
+                <img src="https://image.tmdb.org/t/p/w500/8c6ZOSnIhHmE2aJ1C8nRgJ1g8Uz.jpg" alt="TRON 1982 Poster Oficial" class="gallery-image">
+                <div class="gallery-info">
+                    <div class="gallery-movie">TRON (1982)</div>
+                    <h3 class="gallery-caption">Póster Oficial</h3>
+                    <p class="gallery-description">El póster original que presentó al mundo el universo digital de TRON. Diseño icónico con los Light Cycles.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="tron-1982 concept-art" data-index="1">
+                <img src="https://m.media-amazon.com/images/M/MV5BZWEyN2NkYzYtYzE5YS00ZTNmLWI1YzYtY2U1ZTNlY2UwN2U0XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg" alt="TRON 1982 Concept Art" class="gallery-image">
+                <div class="gallery-info">
+                    <div class="gallery-movie">TRON (1982)</div>
+                    <h3 class="gallery-caption">Concept Art - El Grid</h3>
+                    <p class="gallery-description">Arte conceptual que muestra el diseño original del mundo digital y sus estructuras neón.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="tron-1982 posters" data-index="2">
+                <img src="https://m.media-amazon.com/images/M/MV5BNzQ3ODFhOTItN2M5Mi00MGUzLWI3ODQtM2RkMjUyNDJlN2U3XkEyXkFqcGdeQXVyNzc5MjA3OA@@._V1_FMjpg_UX1000_.jpg" alt="TRON 1982 Poster Alternativo" class="gallery-image">
+                <div class="gallery-info">
+                    <div class="gallery-movie">TRON (1982)</div>
+                    <h3 class="gallery-caption">Póster Alternativo</h3>
+                    <p class="gallery-description">Diseño alternativo con Kevin Flynn enfrentándose al MCP en el mundo digital.</p>
+                </div>
+            </div>
+
+            <!-- TRON: Legacy -->
+            <div class="gallery-item" data-category="tron-legacy posters" data-index="3">
+                <img src="https://image.tmdb.org/t/p/w500/8c6ZOSnIhHmE2aJ1C8nRgJ1g8Uz.jpg" alt="TRON Legacy Poster Oficial" class="gallery-image">
+                <div class="gallery-info">
+                    <div class="gallery-movie">TRON: Legacy (2010)</div>
+                    <h3 class="gallery-caption">Póster Oficial</h3>
+                    <p class="gallery-description">El icónico póster con Sam Flynn en el Light Cycle, mostrando la evolución visual de la franquicia.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="tron-legacy concept-art" data-index="4">
+                <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7e571ffe-4db4-445c-8a30-8d4c5f4ea387/d2d3g3v-2c2a2e7d-0e6f-4b1a-8e5c-3c3e3b3b3b3b.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzdlNTcxZmZlLTRkYjQtNDQ1Yy04YTMwLThkNGM1ZjRlYTM4N1wvZDJkM2czdi0yYzJhMmU3ZC0wZTZmLTRiMWEtOGU1Yy0zYzNlM2IzYjNiM2IuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q" alt="TRON Legacy Concept Art" class="gallery-image">
+                <div class="gallery-info">
+                    <div class="gallery-movie">TRON: Legacy (2010)</div>
+                    <h3 class="gallery-caption">Concept Art - Light Cycles</h3>
+                    <p class="gallery-description">Arte conceptual que muestra el rediseño moderno de los Light Cycles para Legacy.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="tron-legacy posters" data-index="5">
+                <img src="https://m.media-amazon.com/images/M/MV5BMTk4MTk0NjMyOV5BMl5BanBnXkFtZTcwNTE4MTg5Mw@@._V1_FMjpg_UX1000_.jpg" alt="TRON Legacy Poster Daft Punk" class="gallery-image">
+                <div class="gallery-info">
+                    <div class="gallery-movie">TRON: Legacy (2010)</div>
+                    <h3 class="gallery-caption">Póster Banda Sonora</h3>
+                    <p class="gallery-description">Póster promocional destacando la banda sonora de Daft Punk que definió el sonido de la película.</p>
+                </div>
+            </div>
+
+            <!-- TRON: Ares -->
+            <div class="gallery-item" data-category="tron-ares posters" data-index="6">
+                <img src="https://image.tmdb.org/t/p/w500/8c6ZOSnIhHmE2aJ1C8nRgJ1g8Uz.jpg" alt="TRON Ares Poster Oficial" class="gallery-image">
+                <div class="gallery-info">
+                    <div class="gallery-movie">TRON: Ares (2025)</div>
+                    <h3 class="gallery-caption">Póster Teaser</h3>
+                    <p class="gallery-description">Primer vistazo oficial a la nueva entrega de la franquicia TRON. Diseño misterioso y futurista.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="tron-ares concept-art" data-index="7">
+                <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7e571ffe-4db4-445c-8a30-8d4c5f4ea387/d2d3g3v-2c2a2e7d-0e6f-4b1a-8e5c-3c3e3b3b3b3b.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzdlNTcxZmZlLTRkYjQtNDQ1Yy04YTMwLThkNGM1ZjRlYTM4N1wvZDJkM2czdi0yYzJhMmU3ZC0wZTZmLTRiMWEtOGU1Yy0zYzNlM2IzYjNiM2IuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q7Q" alt="TRON Ares Concept Art" class="gallery-image">
+                <div class="gallery-info">
+                    <div class="gallery-movie">TRON: Ares (2025)</div>
+                    <h3 class="gallery-caption">Concept Art - Nuevo Grid</h3>
+                    <p class="gallery-description">Arte conceptual que explora la evolución del Grid en la nueva entrega de TRON.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="tron-ares posters" data-index="8">
+                <img src="https://m.media-amazon.com/images/M/MV5BZWEyN2NkYzYtYzE5YS00ZTNmLWI1YzYtY2U1ZTNlY2UwN2U0XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg" alt="TRON Ares Poster Avanzado" class="gallery-image">
+                <div class="gallery-info">
+                    <div class="gallery-movie">TRON: Ares (2025)</div>
+                    <h3 class="gallery-caption">Póster Avanzado</h3>
+                    <p class="gallery-description">Diseño promocional que muestra la integración entre el mundo real y el digital en Ares.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Descargas -->
+        <section class="download-section">
+            <h2 class="download-title">¿Te gustan estos posters?</h2>
+            <p>Descarga wallpapers en alta calidad para tu ordenador o móvil.</p>
+            <button class="download-btn" id="downloadBtn">Descargar Wallpapers</button>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <button class="modal-nav modal-prev" id="modalPrev">‹</button>
+            <button class="modal-nav modal-next" id="modalNext">›</button>
+            <img id="modalImage" class="modal-image" src="" alt="">
+            <div class="modal-info">
+                <div id="modalMovie" class="gallery-movie"></div>
+                <h3 id="modalCaption" class="gallery-caption"></h3>
+                <p id="modalDescription" class="gallery-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Términos de Uso</a>
+                <a href="#">Contacto</a>
+                <a href="#">DMCA</a>
+            </div>
+            <p>TRON Encyclopedia &copy; 2023 - Todos los derechos reservados</p>
+            <p>TRON es una marca registrada de Disney Enterprises, Inc.</p>
+        </div>
+    </footer>
+
+    <script>
+        class TRONGallery {
+            constructor() {
+                this.currentIndex = 0;
+                this.items = [];
+                this.filteredItems = [];
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.collectGalleryItems();
+                this.setupFilters();
+            }
+
+            setupEventListeners() {
+                // Modal
+                document.getElementById('modalClose').addEventListener('click', () => this.closeModal());
+                document.getElementById('modalPrev').addEventListener('click', () => this.navigate(-1));
+                document.getElementById('modalNext').addEventListener('click', () => this.navigate(1));
+                
+                // Descargas
+                document.getElementById('downloadBtn').addEventListener('click', () => this.handleDownload());
+                
+                // Cerrar modal con ESC
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') this.closeModal();
+                    if (e.key === 'ArrowLeft') this.navigate(-1);
+                    if (e.key === 'ArrowRight') this.navigate(1);
+                });
+            }
+
+            collectGalleryItems() {
+                this.items = Array.from(document.querySelectorAll('.gallery-item'));
+                this.filteredItems = this.items;
+            }
+
+            setupFilters() {
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        // Actualizar botones activos
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        
+                        // Aplicar filtro
+                        const filter = button.dataset.filter;
+                        this.applyFilter(filter);
+                    });
+                });
+            }
+
+            applyFilter(filter) {
+                if (filter === 'all') {
+                    this.filteredItems = this.items;
+                } else {
+                    this.filteredItems = this.items.filter(item => 
+                        item.dataset.category.includes(filter)
+                    );
+                }
+                
+                this.updateGalleryDisplay();
+            }
+
+            updateGalleryDisplay() {
+                const container = document.getElementById('gallery-container');
+                
+                // Ocultar todos los items primero
+                this.items.forEach(item => {
+                    item.style.display = 'none';
+                });
+                
+                // Mostrar solo los filtrados
+                this.filteredItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+                
+                // Recolectar items filtrados para navegación
+                this.collectFilteredItems();
+            }
+
+            collectFilteredItems() {
+                this.filteredItems = Array.from(document.querySelectorAll('.gallery-item[style="display: block"]'));
+            }
+
+            openModal(index) {
+                this.currentIndex = index;
+                const item = this.filteredItems[this.currentIndex];
+                
+                if (!item) return;
+                
+                const image = item.querySelector('.gallery-image');
+                const movie = item.querySelector('.gallery-movie');
+                const caption = item.querySelector('.gallery-caption');
+                const description = item.querySelector('.gallery-description');
+                
+                document.getElementById('modalImage').src = image.src;
+                document.getElementById('modalMovie').textContent = movie.textContent;
+                document.getElementById('modalCaption').textContent = caption.textContent;
+                document.getElementById('modalDescription').textContent = description.textContent;
+                
+                document.getElementById('imageModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            closeModal() {
+                document.getElementById('imageModal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            navigate(direction) {
+                this.currentIndex += direction;
+                
+                if (this.currentIndex < 0) {
+                    this.currentIndex = this.filteredItems.length - 1;
+                } else if (this.currentIndex >= this.filteredItems.length) {
+                    this.currentIndex = 0;
+                }
+                
+                this.openModal(this.currentIndex);
+            }
+
+            handleDownload() {
+                // Simular proceso de descarga
+                alert('Iniciando descarga de wallpapers...\n\nSe abrirá una ventana con los archivos disponibles para descargar.');
+                
+                // En una implementación real, aquí iría la lógica de descarga
+                setTimeout(() => {
+                    alert('Descarga completada. ¡Disfruta de tus nuevos wallpapers TRON!');
+                }, 2000);
+            }
+        }
+
+        // Inicializar galería cuando se carga la página
+        document.addEventListener('DOMContentLoaded', () => {
+            const gallery = new TRONGallery();
+            
+            // Configurar clicks en items de galería
+            document.querySelectorAll('.gallery-item').forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    // Encontrar el índice en los items filtrados
+                    const filteredIndex = gallery.filteredItems.findIndex(
+                        filteredItem => filteredItem === item
+                    );
+                    gallery.openModal(filteredIndex);
+                });
+            });
+        });
+
+        // Efectos visuales adicionales
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efecto de carga progresiva para las imágenes
+            const images = document.querySelectorAll('.gallery-image');
+            images.forEach(img => {
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.5s ease';
+                
+                const tempImg = new Image();
+                tempImg.src = img.src;
+                tempImg.onload = () => {
+                    img.style.opacity = '1';
+                };
+            });
+        });
+    </script>
+</body>
+</html>

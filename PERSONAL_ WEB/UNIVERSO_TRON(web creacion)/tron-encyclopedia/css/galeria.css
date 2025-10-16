@@ -1,0 +1,380 @@
+        :root {
+            --tron-blue: #00f0ff;
+            --tron-orange: #ff6600;
+            --tron-white: #ffffff;
+            --tron-dark: #0d0d1a;
+            --tron-grid: #003344;
+            --admin-green: #00ff88;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--tron-dark);
+            color: var(--tron-white);
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            min-height: 100vh;
+        }
+        
+        /* Header y Navegación */
+        header {
+            background-color: rgba(13, 13, 26, 0.9);
+            border-bottom: 2px solid var(--tron-blue);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--tron-blue);
+            text-shadow: 0 0 10px var(--tron-blue);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 1.5rem;
+        }
+        
+        nav a {
+            color: var(--tron-white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--tron-blue);
+            text-shadow: 0 0 8px var(--tron-blue);
+        }
+        
+        /* Contenido Principal */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .gallery-hero {
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .gallery-title {
+            font-size: 3rem;
+            color: var(--tron-blue);
+            text-shadow: 0 0 15px var(--tron-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .gallery-subtitle {
+            font-size: 1.2rem;
+            color: var(--tron-white);
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Filtros */
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background-color: rgba(13, 13, 26, 0.8);
+            border: 1px solid var(--tron-blue);
+            color: var(--tron-white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--tron-blue);
+            color: var(--tron-dark);
+            box-shadow: 0 0 15px var(--tron-blue);
+        }
+        
+        /* Grid de Galería */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .gallery-item {
+            background-color: rgba(13, 13, 26, 0.8);
+            border: 1px solid var(--tron-grid);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--tron-blue);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-info {
+            padding: 1.5rem;
+        }
+        
+        .gallery-movie {
+            color: var(--tron-orange);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .gallery-caption {
+            color: var(--tron-white);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .gallery-description {
+            color: var(--tron-white);
+            opacity: 0.7;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            max-width: 900px;
+            max-height: 90vh;
+            position: relative;
+            background-color: var(--tron-dark);
+            border: 2px solid var(--tron-blue);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.3);
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+        
+        .modal-info {
+            padding: 1.5rem;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--tron-white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background-color: var(--admin-red);
+            transform: scale(1.1);
+        }
+        
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--tron-white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-prev {
+            left: 1rem;
+        }
+        
+        .modal-next {
+            right: 1rem;
+        }
+        
+        .modal-nav:hover {
+            background-color: var(--tron-blue);
+            color: var(--tron-dark);
+        }
+        
+        /* Sección de Descargas */
+        .download-section {
+            background-color: rgba(13, 13, 26, 0.8);
+            border: 2px solid var(--tron-orange);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .download-title {
+            font-size: 2rem;
+            color: var(--tron-orange);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--tron-orange);
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background-color: var(--tron-orange);
+            color: var(--tron-dark);
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .download-btn:hover {
+            background-color: var(--tron-blue);
+            color: var(--tron-dark);
+            box-shadow: 0 0 15px var(--tron-blue);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(13, 13, 26, 0.9);
+            border-top: 2px solid var(--tron-blue);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--tron-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--tron-blue);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            
+            nav li {
+                margin-left: 0;
+            }
+            
+            .gallery-title {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                margin: 1rem;
+            }
+            
+            .modal-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }

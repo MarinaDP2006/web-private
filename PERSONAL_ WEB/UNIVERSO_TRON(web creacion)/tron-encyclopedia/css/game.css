@@ -1,0 +1,336 @@
+/* game.css
+    Inspirado en un escape room estilo "Grid" de Tron.
+    Variables, rejilla, neón, animaciones y componentes UI para puzzles.
+*/
+
+/* Colores y constantes */
+:root{
+  --bg:#05060b;
+  --grid-1: rgba(0,255,255,0.06);
+  --grid-2: rgba(0,180,255,0.04);
+  --neon-cyan: #00f0ff;
+  --neon-blue: #00a8ff;
+  --neon-magenta: #ff3ecf;
+  --accent: var(--neon-cyan);
+  --glass: rgba(255,255,255,0.03);
+  --glass-border: rgba(255,255,255,0.06);
+  --focus-shadow: 0 0 18px rgba(0,240,255,0.18);
+  --transition: 180ms cubic-bezier(.2,.8,.2,1);
+  --ui-radius: 8px;
+  --font-stack: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Reset suave */
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  background:
+     /* fine grid lines */
+     repeating-linear-gradient(0deg, var(--grid-1) 0 1px, transparent 1px 32px),
+     repeating-linear-gradient(90deg, var(--grid-2) 0 1px, transparent 1px 32px),
+     radial-gradient(1200px 800px at 10% 10%, rgba(0,160,255,0.03), transparent 20%),
+     var(--bg);
+  color:#e9f8ff;
+  font-family:var(--font-stack);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow:hidden;
+}
+
+/* Contenedor principal del juego */
+.game-container{
+  position:relative;
+  width:100%;
+  height:100vh;
+  display:grid;
+  grid-template-rows: auto 1fr auto;
+  gap:18px;
+  padding:24px;
+  align-items:start;
+}
+
+/* HUD superior */
+.hud{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.hud .title{
+  font-weight:700;
+  letter-spacing:1px;
+  color:var(--neon-cyan);
+  text-shadow:0 0 10px rgba(0,240,255,0.18);
+  font-size:1.1rem;
+}
+.hud .status{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.hud .badge{
+  background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid var(--glass-border);
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:0.85rem;
+  color:var(--neon-blue);
+  backdrop-filter:blur(6px);
+  box-shadow:0 0 18px rgba(0,160,255,0.04);
+}
+
+/* Área de juego: grid compleja */
+.tron-grid{
+  position:relative;
+  display:grid;
+  grid-template-columns: 1fr 360px;
+  gap:18px;
+  height:calc(100vh - 200px);
+}
+
+/* Panel principal (mapa / sala) */
+.room{
+  position:relative;
+  border-radius:12px;
+  overflow:hidden;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+  border:1px solid var(--glass-border);
+  box-shadow: inset 0 0 40px rgba(0,64,96,0.06), 0 8px 60px rgba(0,0,0,0.6);
+  padding:14px;
+}
+
+/* Overlay de rejilla luminosa en la sala */
+.room::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+     linear-gradient(90deg, rgba(0,240,255,0.02), transparent 50%),
+     repeating-linear-gradient(0deg, rgba(0,255,255,0.03) 0 1px, transparent 1px 40px),
+     repeating-linear-gradient(90deg, rgba(0,180,255,0.02) 0 1px, transparent 1px 40px);
+  mix-blend-mode:screen;
+  opacity:0.9;
+}
+
+/* Tiles del puzzle: rejilla dentro de la sala */
+.tile-grid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(52px, 1fr);
+  gap:6px;
+  height:100%;
+}
+.tile{
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.06));
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,0.03);
+  position:relative;
+  overflow:hidden;
+  transition:transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  cursor:pointer;
+}
+/* estado activo / iluminado */
+.tile.active{
+  box-shadow:0 0 28px rgba(0,240,255,0.14), inset 0 0 18px rgba(0,160,255,0.06);
+  transform:translateY(-4px) scale(1.02);
+  border-color:var(--accent);
+}
+.tile .glow{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(0,255,255,0.06), rgba(0,160,255,0.02));
+  mix-blend-mode:screen;
+  opacity:0;
+  transition:opacity 200ms ease;
+}
+.tile.active .glow{opacity:1}
+
+/* Iconos y textos dentro de tiles */
+.tile .label{
+  position:absolute;
+  left:8px;
+  bottom:6px;
+  font-size:0.75rem;
+  color:rgba(255,255,255,0.85);
+  text-shadow:0 0 6px rgba(0,200,255,0.08);
+}
+
+/* Panel lateral con controles y pistas */
+.side-panel{
+  border-radius:12px;
+  padding:14px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08));
+  border:1px solid var(--glass-border);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  min-height:320px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.5);
+}
+
+/* Paneles de hint / puzzle */
+.panel{
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.04));
+  border-radius:10px;
+  padding:10px;
+  border:1px solid rgba(255,255,255,0.02);
+  box-shadow:0 2px 12px rgba(0,0,0,0.4);
+}
+
+/* Teclado numérico / keypad */
+.keypad{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:8px;
+}
+.keypad button{
+  background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.04);
+  color:var(--neon-cyan);
+  padding:14px;
+  font-weight:700;
+  border-radius:8px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.6);
+  transition:transform var(--transition), box-shadow var(--transition), filter var(--transition);
+  cursor:pointer;
+  text-shadow:0 0 8px rgba(0,240,255,0.12);
+}
+.keypad button:hover{ transform:translateY(-4px); filter:brightness(1.06)}
+.keypad button:active{ transform:translateY(0) scale(.98)}
+.keypad button.primary{
+  background:linear-gradient(90deg, rgba(0,240,255,0.12), rgba(0,160,255,0.06));
+  border:1px solid var(--accent);
+  box-shadow:0 6px 28px rgba(0,160,255,0.12);
+  color:#00121a;
+}
+
+/* Botones generales */
+.button{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.03);
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+  color:var(--neon-blue);
+  cursor:pointer;
+  transition:all var(--transition);
+}
+.button:hover{ transform:translateY(-2px); box-shadow:var(--focus-shadow)}
+
+/* Modal/dialog estilo Tron */
+.modal{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+}
+.modal .window{
+  pointer-events:auto;
+  width:min(720px, 92%);
+  border-radius:12px;
+  padding:18px;
+  background:linear-gradient(180deg, rgba(2,6,12,0.95), rgba(1,4,8,0.9));
+  border:1px solid rgba(0,240,255,0.06);
+  box-shadow:0 24px 120px rgba(0,0,0,0.8), 0 0 80px rgba(0,160,255,0.06);
+  transform:translateY(8px) scale(.98);
+  opacity:0;
+  transition:all 220ms ease;
+}
+.modal.show .window{ transform:none; opacity:1 }
+
+/* Scanning line / sweep */
+.scanner{
+  position:absolute;
+  left:0; right:0;
+  height:2px;
+  background:linear-gradient(90deg, transparent, rgba(0,240,255,0.25), transparent);
+  mix-blend-mode:screen;
+  animation:scan 4s linear infinite;
+  pointer-events:none;
+  top:0;
+  opacity:0.9;
+}
+@keyframes scan{
+  0%{transform:translateY(-6%)}
+  10%{transform:translateY(0%)}
+  90%{transform:translateY(100%)}
+  100%{transform:translateY(106%)}
+}
+
+/* Efecto glitch para alarmas */
+.glitch{
+  color:var(--neon-magenta);
+  position:relative;
+  text-shadow: 0 0 8px rgba(255,62,207,0.12);
+}
+.glitch::after, .glitch::before{
+  content:attr(data-text);
+  position:absolute;
+  left:0; top:0;
+  width:100%;
+  overflow:hidden;
+  clip:rect(0,900px,0,0);
+}
+.glitch::before{
+  color:var(--neon-cyan);
+  z-index:2;
+  animation:glitchTop 2.2s infinite linear;
+}
+.glitch::after{
+  color:var(--neon-magenta);
+  z-index:1;
+  animation:glitchBottom 2.5s infinite linear;
+}
+@keyframes glitchTop{
+  0%{clip:rect(0,9999px,0,0); transform:translate(-2px,-1px)}
+  20%{clip:rect(0,9999px,12px,0); transform:translate(2px,1px)}
+  40%{clip:rect(0,9999px,4px,0); transform:translate(-1px,0)}
+  60%{clip:rect(0,9999px,14px,0); transform:translate(1px,-1px)}
+  100%{clip:rect(0,9999px,0,0); transform:none}
+}
+@keyframes glitchBottom{
+  0%{clip:rect(0,9999px,0,0); transform:translate(2px,1px)}
+  20%{clip:rect(0,9999px,8px,0); transform:translate(-2px,-1px)}
+  50%{clip:rect(0,9999px,6px,0); transform:translate(1px,0)}
+  100%{clip:rect(0,9999px,0,0); transform:none}
+}
+
+/* Indicadores de portal / objetivo */
+.portal{
+  border-radius:50%;
+  width:42px;
+  height:42px;
+  display:inline-grid;
+  place-items:center;
+  background:radial-gradient(circle at 30% 30%, rgba(0,255,255,0.2), rgba(0,160,255,0.06));
+  border:2px solid rgba(0,240,255,0.18);
+  box-shadow:0 0 40px rgba(0,200,255,0.14), inset 0 0 12px rgba(0,255,255,0.04);
+  transition:transform var(--transition), box-shadow var(--transition);
+}
+.portal.pulse{ animation:portalPulse 1.6s infinite ease-in-out }
+@keyframes portalPulse{
+  0%{ transform:scale(1); box-shadow:0 0 24px rgba(0,200,255,0.06)}
+  50%{ transform:scale(1.08); box-shadow:0 0 48px rgba(0,200,255,0.18)}
+  100%{ transform:scale(1); box-shadow:0 0 24px rgba(0,200,255,0.06)}
+}
+
+/* Accesibilidad: foco visible */
+:focus{ outline:none; box-shadow:var(--focus-shadow) }
+
+/* Responsivo: colapsar layout en pantallas pequeñas */
+@media (max-width:980px){
+  .tron-grid{ grid-template-columns:1fr; grid-auto-rows: auto 1fr; height:auto }
+  .tile-grid{ grid-template-columns: repeat(8, 1fr) }
+  .keypad button{ padding:12px }
+}
+@media (max-width:520px){
+  .tile-grid{ grid-template-columns: repeat(6, 1fr) }
+  .hud .title{ font-size:0.98rem }
+  .hud .badge{ display:none }
+}
