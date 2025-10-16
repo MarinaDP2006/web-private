@@ -1,16 +1,23 @@
-# TRON Encyclopedia Web
-Enciclopedia interactiva del universo TRON con funcionalidades de juego, galería y administración.
+# TRON Encyclopedia
+Enciclopedia interactiva del universo TRON con base de datos MySQL, sistema de usuarios y juego "Escape de TRON".
 
-## Requisitos
-- Navegador moderno
-- Acceso por enlace privado
-- Usuario ADMIN para editar contenido
+## Características
+- Base de datos completa del universo TRON
+- Sistema de autenticación de usuarios
+- Juego interactivo "Escape de TRON"
+- Panel de administración
+- Búsqueda avanzada
+- Galería multimedia
 
-## Base de Datos
-Ubicada en `assets/data/database.sql`. Incluye tablas para:
-- Cuentas y usuarios
-- Escape Room (preguntas, puntuaciones)
-- Datos, tecnología y personajes de cada apartado de la enciclopedia interactiva
+## Instalación
+1. Clonar el repositorio
+2. Ejecutar `npm install`
+3. Configurar la base de datos en `.env`
+4. Ejecutar `npm run init-db`
+5. Ejecutar `npm start`
+
+## Puerto
+La aplicación se ejecuta en el puerto 3000 por defecto.
 
 ## Seguridad
 - Acceso restringido por clave en URL
@@ -22,19 +29,19 @@ Timeline del universo
 Contenido destacado
 (en caso de registrarse) 
 Escapa de Tron - Escape Room
-# TRON 1982 (/tron-1982)
+TRON 1982 (/tron-1982)
 Submenú:
 ├── Personajes
 ├── Tecnología
 ├── Localizaciones
 └── Historia
-# TRON: LEGACY (/tron-legacy)
+LEGACY (/tron-legacy)
 Submenú:
 ├── Personajes 
 ├── El Grid 
 ├── Tecnología
 └── Banda Sonora (Daft Punk)
-# TRON: ARES (/tron-ares)
+ARES (/tron-ares)
 Submenú:
 ├── Personajes
 ├── Tecnología
@@ -48,20 +55,3 @@ Filtros múltiples e historial personal
 - CRUD completo
 - Gestión de contenido
 - Estadísticas de usuarios
-
-# Tabla de Páginas y Propósito
-index.html - Página principal con timeline, destacados y acceso al Escape Room
-
-tron-1982.html - Información sobre la película original: personajes, tecnología y  vehiculos e historia
-
-legacy.html	- Sección dedicada a Legacy 2010
-
-ares.html - Sección dedicada a Ares 2025
-
-galeria.html - Galería multimedia con filtros y opción de descarga por contacto
-
-buscar.html	- Buscador con filtros y historial personal
-
-escapeoftron.html - Juego interactivo tipo Escape Room (solo usuarios registrados)
-
-admin.html	- Panel de administración para CRUD y estadísticas (solo usuario ADMIN)
