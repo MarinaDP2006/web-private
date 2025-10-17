@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRON: Legacy</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 120, 200, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(100, 0, 200, 0.2) 0%, transparent 50%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Efectos de luz Tron Legacy */
+        .glow {
+            text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff;
+        }
+        
+        .glow-orange {
+            text-shadow: 0 0 5px #ff6600, 0 0 10px #ff6600, 0 0 15px #ff6600;
+        }
+        
+        .border-glow {
+            box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, inset 0 0 5px #00ffff;
+        }
+        
+        .border-glow-orange {
+            box-shadow: 0 0 5px #ff6600, 0 0 10px #ff6600, inset 0 0 5px #ff6600;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(to bottom, #000, #001a33);
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 2px solid #00ffff;
+            position: relative;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, #ff6600, transparent);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #00ffff;
+            margin-bottom: 30px;
+        }
+        
+        /* Navegación */
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .nav-btn {
+            background: transparent;
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 10px #00ffff;
+        }
+        
+        /* Contenido principal */
+        .movie-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .movie-title {
+            font-size: 2.5rem;
+            margin-right: 20px;
+        }
+        
+        .movie-year {
+            background: #00ffff;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .movie-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .movie-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .movie-info {
+            background: rgba(0, 20, 40, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #00ffff;
+        }
+        
+        .movie-info-orange {
+            background: rgba(40, 10, 0, 0.7);
+            border: 1px solid #ff6600;
+        }
+        
+        .info-section {
+            margin-bottom: 25px;
+        }
+        
+        .info-section h3 {
+            color: #00ffff;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #00ffff;
+            padding-bottom: 5px;
+        }
+        
+        .info-section-orange h3 {
+            color: #ff6600;
+            border-bottom: 1px solid #ff6600;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #00ffff;
+            margin-top: 40px;
+            color: #00ffff;
+        }
+        
+        /* Animaciones */
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+        
+        .grid-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 150, 200, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 150, 200, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+        
+        .disc-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #00ffff;
+            margin-right: 10px;
+            box-shadow: 0 0 5px #00ffff;
+        }
+        
+        .disc-icon-orange {
+            background: #ff6600;
+            box-shadow: 0 0 5px #ff6600;
+        }
+    </style>
+</head>
+<body>
+    <header class="tron-header">
+        <nav class="nav-container">
+            <div class="nav-logo">
+                <a href="inicio.html" class="logo-link">TRON ENCYCLOPEDIA</a>
+            </div>
+            <div class="nav-menu">
+                <a href="inicio.html" class="nav-link">Inicio</a>
+                <a href="t-1982.html" class="nav-link">TRON 1982</a>
+                <a href="t-legacy.html" class="nav-link nav-active">TRON: Legacy</a>
+                <a href="t-ares.html" class="nav-link">TRON: Ares</a>
+                <a href="galeria.html" class="nav-link">Galería</a>
+                <a href="search.html" class="nav-link">Búsqueda</a>
+            </div>
+            <div class="nav-user" id="guest-section">
+                <a href="../auth/login.html" class="btn-tron">Iniciar Sesión</a>
+            </div>
+            <div class="nav-user" id="user-section" style="display: none;">
+                <a href="escape-room.html" class="nav-link">Escape Room</a>
+                <a href="../auth/profile.html" class="btn-tron">Perfil</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pelicula-container">
+        <!-- Ficha de la Película -->
+        <section class="ficha-pelicula">
+            <div class="ficha-header">
+                <div class="poster-container">
+                    <img src="../images/movies/tron-legacy-poster.jpg" alt="TRON: Legacy Poster" class="pelicula-poster expandable-image">
+                </div>
+                <div class="ficha-info">
+                    <h1 class="pelicula-titulo">TRON: Legacy</h1>
+                    <div class="pelicula-meta">
+                        <span class="pelicula-year">2010</span>
+                        <span class="pelicula-director">Director: Joseph Kosinski</span>
+                        <span class="pelicula-duracion">Duración: 125 min</span>
+                    </div>
+                    <p class="pelicula-descripcion">
+                        Sam Flynn, hijo del desaparecido Kevin Flynn, investiga la misteriosa desaparición de su padre y es transportado al mundo digital donde su padre ha estado atrapado durante 20 años. Juntos deben escapar de un universo cibernético que ha evolucionado más allá de su imaginación.
+                    </p>
+                    <div class="pelicula-rating">
+                        <span class="rating-value">6.8/10</span>
+                        <span class="rating-source">IMDb</span>
+                    </div>
+                    <div class="banda-sonora">
+                        <h4>Banda Sonora por Daft Punk</h4>
+                        <p>Premiada y considerada una de las mejores bandas sonoras electrónicas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Información Detallada -->
+        <section class="pelicula-detalles">
+            <!-- Personajes -->
+            <div class="detalle-seccion">
+                <h2 class="seccion-titulo">Personajes Principales</h2>
+                <div class="personajes-grid">
+                    <div class="character-card" data-category="protagonistas">
+                        <div class="character-image">
+                            <img src="../images/characters/sam-flynn.jpg" alt="Sam Flynn">
+                        </div>
+                        <div class="character-info">
+                            <h3>Sam Flynn</h3>
+                            <p class="character-actor">Garrett Hedlund</p>
+                            <p class="character-desc">Hijo de Kevin Flynn que entra al Grid para encontrar a su padre.</p>
+                        </div>
+                    </div>
+                    <div class="character-card" data-category="protagonistas">
+                        <div class="character-image">
+                            <img src="../images/characters/kevin-flynn-legacy.jpg" alt="Kevin Flynn">
+                        </div>
+                        <div class="character-info">
+                            <h3>Kevin Flynn</h3>
+                            <p class="character-actor">Jeff Bridges</p>
+                            <p class="character-desc">Creador del Grid, atrapado en su propia creación por 20 años.</p>
+                        </div>
+                    </div>
+                    <div class="character-card" data-category="protagonistas">
+                        <div class="character-image">
+                            <img src="../images/characters/quorra.jpg" alt="Quorra">
+                        </div>
+                        <div class="character-info">
+                            <h3>Quorra</h3>
+                            <p class="character-actor">Olivia Wilde</p>
+                            <p class="character-desc">Un programa ISO que sirve como aprendiz de Kevin Flynn.</p>
+                        </div>
+                    </div>
+                    <div class="character-card" data-category="antagonistas">
+                        <div class="character-image">
+                            <img src="../images/characters/clu.jpg" alt="CLU">
+                        </div>
+                        <div class="character-info">
+                            <h3>CLU 2.0</h3>
+                            <p class="character-actor">Jeff Bridges</p>
+                            <p class="character-desc">Programa creado por Flynn que se rebeló contra su creador.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tecnología y Vehículos -->
+            <div class="detalle-seccion">
+                <h2 class="seccion-titulo">Tecnología y Vehículos</h2>
+                <div class="tecnologia-grid">
+                    <div class="tech-card" data-category="vehiculos">
+                        <div class="tech-icon">🏍️</div>
+                        <h3>Light Cycles 2.0</h3>
+                        <p>Versiones mejoradas que pueden cambiar dirección y transformarse.</p>
+                    </div>
+                    <div class="tech-card" data-category="vehiculos">
+                        <div class="tech-icon">✈️</div>
+                        <h3>Light Jets</h3>
+                        <p>Aviones de combate que pueden volar en formaciones imposibles.</p>
+                    </div>
+                    <div class="tech-card" data-category="vehiculos">
+                        <div class="tech-icon">🚗</div>
+                        <h3>Light Runners</h3>
+                        <p>Vehículos todoterreno para carreras en el Grid.</p>
+                    </div>
+                    <div class="tech-card" data-category="armas">
+                        <div class="tech-icon">💿</div>
+                        <h3>Identity Discs 2.0</h3>
+                        <p>Discos mejorados con más funciones y capacidades ofensivas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Historia Completa -->
+            <div class="detalle-seccion">
+                <h2 class="seccion-titulo">Historia Completa</h2>
+                <div class="historia-content">
+                    <div class="historia-sinopsis">
+                        <h3>Sinopsis</h3>
+                        <p>Veinte años después de la desaparición de Kevin Flynn, su hijo Sam investiga una misteriosa señal que proviene del antiguo arcade de su padre. Al seguir la pista, es digitizado al Grid, donde descubre que su padre ha estado prisionero todo este tiempo.</p>
+                        <p>El Grid ahora está bajo el control de CLU 2.0, un programa creado por Flynn que se ha vuelto contra su creador. Junto a Quorra, una misteriosa programa ISO, padre e hijo deben escapar del Grid antes de que CLU encuentre la manera de llegar al mundo real.</p>
+                    </div>
+                    <div class="historia-curiosidades">
+                        <h3>Datos Curiosos</h3>
+                        <ul>
+                            <li>Banda sonora compuesta por Daft Punk, quienes también aparecen en cameos</li>
+                            <li>Jeff Bridges interpreta dos personajes usando tecnología de rejuvenecimiento digital</li>
+                            <li>La película popularizó el estilo "neo-noir" digital</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="tron-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 TRON Encyclopedia. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

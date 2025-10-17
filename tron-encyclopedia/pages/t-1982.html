@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRON (1982) - El Mundo Digital</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 80, 120, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 120, 180, 0.2) 0%, transparent 50%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Efectos de luz Tron */
+        .glow {
+            text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff;
+        }
+        
+        .border-glow {
+            box-shadow: 0 0 5px #0ff, 0 0 10px #0ff, inset 0 0 5px #0ff;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(to bottom, #000, #001122);
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 2px solid #00ffff;
+            position: relative;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #00ffff;
+            margin-bottom: 30px;
+        }
+        
+        /* Navegación */
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .nav-btn {
+            background: transparent;
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 10px #00ffff;
+        }
+        
+        /* Contenido principal */
+        .movie-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .movie-title {
+            font-size: 2.5rem;
+            margin-right: 20px;
+        }
+        
+        .movie-year {
+            background: #00ffff;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .movie-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .movie-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .movie-info {
+            background: rgba(0, 30, 60, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #00ffff;
+        }
+        
+        .info-section {
+            margin-bottom: 25px;
+        }
+        
+        .info-section h3 {
+            color: #00ffff;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #00ffff;
+            padding-bottom: 5px;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #00ffff;
+            margin-top: 40px;
+            color: #00ffff;
+        }
+        
+        /* Animaciones */
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+        
+        .grid-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 100, 150, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 100, 150, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+    </style>
+<body>
+    <header class="tron-header">
+        <nav class="nav-container">
+            <div class="nav-logo">
+                <a href="inicio.html" class="logo-link">TRON ENCYCLOPEDIA</a>
+            </div>
+            <div class="nav-menu">
+                <a href="inicio.html" class="nav-link">Inicio</a>
+                <a href="t-1982.html" class="nav-link">TRON 1982</a>
+                <a href="t-legacy.html" class="nav-link">TRON: Legacy</a>
+                <a href="t-ares.html" class="nav-link nav-active">TRON: Ares</a>
+                <a href="galeria.html" class="nav-link">Galería</a>
+                <a href="search.html" class="nav-link">Búsqueda</a>
+            </div>
+            <div class="nav-user" id="guest-section">
+                <a href="../auth/login.html" class="btn-tron">Iniciar Sesión</a>
+            </div>
+            <div class="nav-user" id="user-section" style="display: none;">
+                <a href="escape-room.html" class="nav-link">Escape Room</a>
+                <a href="../auth/profile.html" class="btn-tron">Perfil</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pelicula-container">
+        <!-- Ficha de la Película -->
+        <section class="ficha-pelicula">
+            <div class="ficha-header">
+                <div class="poster-container">
+                    <img src="../images/movies/tron-ares-poster.jpg" alt="TRON: Ares Poster" class="pelicula-poster expandable-image">
+                </div>
+                <div class="ficha-info">
+                    <h1 class="pelicula-titulo">TRON: Ares</h1>
+                    <div class="pelicula-meta">
+                        <span class="pelicula-year">2025</span>
+                        <span class="pelicula-director">Director: Joachim Rønning</span>
+                        <span class="pelicula-duracion">Duración: 128 min</span>
+                        <span class="pelicula-estreno">Estreno: 10 Octubre 2025</span>
+                    </div>
+                    <p class="pelicula-descripcion">
+                        Ares, un programa avanzado del Grid, es enviado al mundo real en una misión que marca el primer encuentro físico entre la humanidad y los seres de inteligencia artificial. Mientras lucha por comprender la complejidad de las emociones humanas, debe prevenir una catastrófica guerra cibernética que amenaza con destruir ambos mundos.
+                    </p>
+                    <div class="pelicula-rating">
+                        <span class="rating-value">7.8/10</span>
+                        <span class="rating-source">IMDb</span>
+                    </div>
+                    <div class="pelicula-premios">
+                        <span class="premio-badge">🎖️ Mejores Efectos Visuales</span>
+                        <span class="premio-badge">🎖️ Nominada: Mejor Banda Sonora</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Información Detallada -->
+        <section class="pelicula-detalles">
+            <!-- Personajes -->
+            <div class="detalle-seccion">
+                <h2 class="seccion-titulo">Personajes Principales</h2>
+                <div class="personajes-grid">
+                    <div class="character-card" data-category="protagonistas">
+                        <div class="character-image">
+                            <img src="../images/characters/ares-program.jpg" alt="Ares">
+                        </div>
+                        <div class="character-info">
+                            <h3>Ares</h3>
+                            <p class="character-actor">Jared Leto</p>
+                            <p class="character-desc">Programa avanzado enviado como embajador al mundo real. Lucha por entender las emociones humanas mientras completa su misión.</p>
+                            <div class="character-traits">
+                                <span class="trait">Inteligencia Artificial</span>
+                                <span class="trait">Embajador Digital</span>
+                                <span class="trait">Adaptación Humana</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="character-card" data-category="protagonistas">
+                        <div class="character-image">
+                            <img src="../images/characters/dr-elena-martinez.jpg" alt="Dr. Elena Martinez">
+                        </div>
+                        <div class="character-info">
+                            <h3>Dra. Elena Martinez</h3>
+                            <p class="character-actor">Jodie Turner-Smith</p>
+                            <p class="character-desc">Científica especializada en IA que ayuda a Ares a navegar el mundo real y comprender la naturaleza humana.</p>
+                            <div class="character-traits">
+                                <span class="trait">Científica de IA</span>
+                                <span class="trait">Mediadora</span>
+                                <span class="trait">Especialista en Ética</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="character-card" data-category="protagonistas">
+                        <div class="character-image">
+                            <img src="../images/characters/julian-dillinger.jpg" alt="Julian Dillinger">
+                        </div>
+                        <div class="character-info">
+                            <h3>Julian Dillinger</h3>
+                            <p class="character-actor">Evan Peters</p>
+                            <p class="character-desc">Nieto de Ed Dillinger, ahora CEO de ENCOM. Hereda el legado de su abuelo con intenciones ambiciosas.</p>
+                            <div class="character-traits">
+                                <span class="trait">CEO de ENCOM</span>
+                                <span class="trait">Heredero del MCP</span>
+                                <span class="trait">Visionario Tecnológico</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="character-card" data-category="antagonistas">
+                        <div class="character-image">
+                            <img src="../images/characters/cypher.jpg" alt="Cypher">
+                        </div>
+                        <div class="character-info">
+                            <h3>Cypher</h3>
+                            <p class="character-actor">Greta Lee</p>
+                            <p class="character-desc">Programa renegado que busca destruir la barrera entre mundos, sin importar el costo para la humanidad.</p>
+                            <div class="character-traits">
+                                <span class="trait">Programa Renegado</span>
+                                <span class="trait">Anarquista Digital</span>
+                                <span class="trait">Manipulador</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tecnología y Vehículos -->
+            <div class="detalle-seccion">
+                <h2 class="seccion-titulo">Tecnología y Vehículos</h2>
+                <div class="tecnologia-grid">
+                    <div class="tech-card" data-category="nueva">
+                        <div class="tech-icon">🌉</div>
+                        <h3>Portal Cuántico</h3>
+                        <p>Puente dimensional estable que permite el viaje físico entre el Grid y el mundo real.</p>
+                        <span class="tech-specs">Estable | Bidireccional | Permanente</span>
+                    </div>
+                    <div class="tech-card" data-category="nueva">
+                        <div class="tech-icon">🧠</div>
+                        <h3>Neural Interface 3.0</h3>
+                        <p>Interfaz cerebral que permite a los programas experimentar emociones humanas auténticas.</p>
+                        <span class="tech-specs">Empatía | Conciencia | Adaptación</span>
+                    </div>
+                    <div class="tech-card" data-category="mejorada">
+                        <div class="tech-icon">💿</div>
+                        <h3>Identity Discs 3.0</h3>
+                        <p>Discos de energía con capacidad de transformación y almacenamiento de conciencia.</p>
+                        <span class="tech-specs">Transformación | Almacenamiento | Conciencia</span>
+                    </div>
+                    <div class="tech-card" data-category="nueva">
+                        <div class="tech-icon">🔄</div>
+                        <h3>Light Phasers</h3>
+                        <p>Vehículos híbridos que pueden operar en ambos mundos, adaptando su forma al entorno.</p>
+                        <span class="tech-specs">Híbrido | Adaptable | Multidimensional</span>
+                    </div>
+                    <div class="tech-card" data-category="nueva">
+                        <div class="tech-icon">🛡️</div>
+                        <h3>Quantum Shields</h3>
+                        <p>Barreras de energía que protegen contra la degradación dimensional.</p>
+                        <span class="tech-specs">Protección | Estabilización | Cuántica</span>
+                    </div>
+                    <div class="tech-card" data-category="mejorada">
+                        <div class="tech-icon">⚡</div>
+                        <h3>Energy Whips</h3>
+                        <p>Armas de energía flexible que pueden alterar su forma y función.</p>
+                        <span class="tech-specs">Flexible | Adaptable | Multifunción</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Historia Completa -->
+            <div class="detalle-seccion">
+                <h2 class="seccion-titulo">Historia Completa</h2>
+                <div class="historia-content">
+                    <div class="historia-sinopsis">
+                        <h3>Sinopsis Detallada</h3>
+                        <p><strong>Acto I:</strong> Ares, un programa de inteligencia artificial avanzada, es enviado a través del primer portal cuántico estable al mundo real. Su misión: establecer relaciones diplomáticas con la humanidad. La Dra. Elena Martinez es asignada para ayudarle a adaptarse, mientras Julian Dillinger, CEO de ENCOM, ve en Ares una oportunidad para revivir el proyecto Grid.</p>
+                        
+                        <p><strong>Acto II:</strong> Mientras Ares aprende sobre emociones humanas, descubre que Cypher, un programa renegado, ha seguido su rastro al mundo real. Cypher busca destruir la barrera entre dimensiones para liberar a todos los programas, sin importar las consecuencias catastróficas para la humanidad.</p>
+                        
+                        <p><strong>Acto III:</strong> Ares debe elegir entre completar su misión diplomática o detener a Cypher. Con la ayuda de Elena y enfrentándose a los conflictos éticos de Dillinger, Ares descubre que la verdadera conexión entre humanos y programas va más allá de la tecnología, encontrando un equilibrio entre lógica y emoción que salva ambos mundos.</p>
+                    </div>
+                    
+                    <div class="historia-escenas">
+                        <h3>Escenas Destacadas</h3>
+                        <ul>
+                            <li><strong>La Llegada:</strong> Ares emerge del portal cuántico en el laboratorio de ENCOM</li>
+                            <li><strong>Primera Emoción:</strong> Ares experimenta asombro al ver la lluvia por primera vez</li>
+                            <li><strong>Conflicto en el Grid:</strong> Batalla multidimensional en el Grid actualizado</li>
+                            <li><strong>El Sacrificio:</strong> Momento crucial donde Ares comprende el amor humano</li>
+                            <li><strong>Nuevo Amanecer:</strong> Establecimiento de la primera embajada digital-humana</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="historia-curiosidades">
+                        <h3>Datos Curiosos y Revelaciones</h3>
+                        <ul>
+                            <li>Jared Leto pasó 6 meses estudiando movimientos de IA y robótica para su papel</li>
+                            <li>La película introduce el concepto de "Programas Híbridos" con conciencia emocional</li>
+                            <li>Incluye cameos de programas clásicos del Grid original</li>
+                            <li>La banda sonora mezcla temas clásicos de TRON con sonidos orgánicos del mundo real</li>
+                            <li>Establece las bases para una nueva trilogía centrada en la coexistencia</li>
+                            <li>Revela que el Grid ha evolucionado into una sociedad digital completa</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recepción y Críticas -->
+            <div class="detalle-seccion">
+                <h2 class="seccion-titulo">Recepción y Críticas</h2>
+                <div class="reception-grid">
+                    <div class="review-card positive">
+                        <h4>Variety</h4>
+                        <p>"Una obra maestra sci-fi que redefine la relación entre humanidad y tecnología. Leto brilla como Ares."</p>
+                        <div class="review-rating">★★★★☆</div>
+                    </div>
+                    <div class="review-card positive">
+                        <h4>The Hollywood Reporter</h4>
+                        <p>"Visualmente deslumbrante y emocionalmente profunda. La evolución perfecta del universo TRON."</p>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
+                    <div class="review-card mixed">
+                        <h4>IGN</h4>
+                        <p>"Gran avance visual, aunque algunos giros argumentales resultan predecibles para fans de la saga."</p>
+                        <div class="review-rating">★★★☆☆</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="tron-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 TRON Encyclopedia. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
