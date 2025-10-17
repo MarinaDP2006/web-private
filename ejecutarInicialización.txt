@@ -1,0 +1,7 @@
+npm run init-db -- Comando
+
+creará automáticamente:
+La base de datos si no existe
+Todas las tablas necesarias
+Datos iniciales de películas, personajes, tecnología y localizaciones
+Un usuario admin por defecto (usuario: admin, contraseña: admin123)
