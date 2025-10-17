@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - TRON Encyclopedia</title>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-header">
+            <div class="register-icon">👤</div>
+            <h1 class="register-title">REGISTRO DE USUARIO</h1>
+            <p class="register-subtitle">Únete al Grid y accede al Escape Room</p>
+        </div>
+        
+        <div id="form-feedback" class="form-feedback"></div>
+        
+        <form id="register-form" class="register-form">
+            <div class="form-group">
+                <label for="username" class="form-label">Nombre de Usuario</label>
+                <input type="text" id="username" class="form-input" required 
+                       placeholder="Ej: flynn1982">
+                <div class="form-requirements">Mínimo 3 caracteres, solo letras y números</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input type="email" id="email" class="form-input" required 
+                       placeholder="tu@email.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" id="password" class="form-input" required 
+                       placeholder="••••••••">
+                <div class="form-requirements">Mínimo 8 caracteres, incluir números y letras</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm-password" class="form-label">Confirmar Contraseña</label>
+                <input type="password" id="confirm-password" class="form-input" required 
+                       placeholder="••••••••">
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" required>
+                <label for="terms" class="checkbox-label">
+                    Acepto los <a href="#" onclick="showTerms()">Términos de Servicio</a> y 
+                    la <a href="#" onclick="showPrivacy()">Política de Privacidad</a> de TRON Encyclopedia
+                </label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="newsletter">
+                <label for="newsletter" class="checkbox-label">
+                    Deseo recibir notificaciones sobre nuevo contenido y actualizaciones
+                </label>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+                <a href="index.html" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+        
+        <div class="login-link">
+            ¿Ya tienes una cuenta? <a href="#" onclick="showLogin()">Iniciar Sesión</a>
+        </div>
+        
+        <div class="benefits">
+            <h3 class="benefits-title">Beneficios de Registrarse</h3>
+            <ul class="benefits-list">
+                <li>Acceso completo al Escape Room "Escapa de TRON"</li>
+                <li>Guardar tu progreso en el juego</li>
+                <li>Historial personal de búsquedas</li>
+                <li>Participar en rankings y competir con otros usuarios</li>
+                <li>Recibir notificaciones de nuevo contenido</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Manejo del formulario de registro
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const terms = document.getElementById('terms').checked;
+            
+            const feedback = document.getElementById('form-feedback');
+            
+            // Validaciones
+            if (!terms) {
+                showFeedback('Debes aceptar los términos y condiciones', 'error');
+                return;
+            }
+            
+            if (username.length < 3) {
+                showFeedback('El nombre de usuario debe tener al menos 3 caracteres', 'error');
+                return;
+            }
+            
+            if (password.length < 8) {
+                showFeedback('La contraseña debe tener al menos 8 caracteres', 'error');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showFeedback('Las contraseñas no coinciden', 'error');
+                return;
+            }
+            
+            // Validación de email básica
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showFeedback('Por favor, introduce un email válido', 'error');
+                return;
+            }
+            
+            // Simular registro exitoso
+            showFeedback('Registro en proceso...', 'success');
+            
+            setTimeout(() => {
+                // Guardar datos de usuario en localStorage
+                const userData = {
+                    username: username,
+                    email: email,
+                    registered: true,
+                    joinDate: new Date().toISOString()
+                };
+                
+                localStorage.setItem('userRegistered', 'true');
+                localStorage.setItem('userData', JSON.stringify(userData));
+                
+                showFeedback('¡Registro exitoso! Redirigiendo al Escape Room...', 'success');
+                
+                // Redirigir al escape room después de 2 segundos
+                setTimeout(() => {
+                    window.location.href = 'escapeoftron.html';
+                }, 2000);
+                
+            }, 1500);
+        });
+        
+        // Función para mostrar feedback
+        function showFeedback(message, type) {
+            const feedback = document.getElementById('form-feedback');
+            feedback.textContent = message;
+            feedback.className = 'form-feedback ' + type;
+        }
+        
+        // Validación en tiempo real de la contraseña
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const requirements = this.parentElement.querySelector('.form-requirements');
+            
+            if (password.length > 0 && password.length < 8) {
+                requirements.style.color = '#ff4444';
+            } else if (password.length >= 8) {
+                requirements.style.color = '#00ff88';
+            } else {
+                requirements.style.color = 'var(--tron-blue)';
+            }
+        });
+        
+        // Funciones para los enlaces (simuladas)
+        function showTerms() {
+            alert('Términos de Servicio:\n\nAl registrarte aceptas que:\n- Eres un usuario del Grid\n- Respetarás a otros programas\n- No intentarás descompilar el sistema\n\n¡Disfruta de TRON Encyclopedia!');
+        }
+        
+        function showPrivacy() {
+            alert('Política de Privacidad:\n\nTu datos están seguros con nosotros:\n- Solo almacenamos información esencial\n- No compartimos datos con el MCP\n- Puedes eliminar tu cuenta cuando quieras');
+        }
+        
+        function showLogin() {
+            alert('Sistema de Login:\n\nActualmente el registro es automático.\nEn futuras actualizaciones podrás iniciar sesión con tu cuenta.');
+        }
+    </script>
+</body>
+</html>
