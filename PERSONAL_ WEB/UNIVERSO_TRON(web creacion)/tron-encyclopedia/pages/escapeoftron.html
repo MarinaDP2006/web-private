@@ -1,1 +1,153 @@
-<!-- Crea una pregunta de prueba con su respuesta. -->
+<!-- pages/escape-tron.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape de TRON - TRON Encyclopedia</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/game.css">
+    <link rel="stylesheet" href="../css/authentication.css">
+</head>
+<body class="tron-theme">
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="../index.html">TRON ENCYCLOPEDIA</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="tron-1982.html">TRON 1982</a></li>
+                <li><a href="legacy.html">TRON: Legacy</a></li>
+                <li><a href="ares.html">TRON: Ares</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="buscar.html">Buscar</a></li>
+                <li class="active"><a href="escape-tron.html">Escape de TRON</a></li>
+                <li id="user-menu">
+                    <a href="#" id="login-btn">Iniciar Sesión</a>
+                    <div id="user-dropdown" class="hidden">
+                        <a href="#" id="profile-link">Perfil</a>
+                        <a href="#" id="logout-btn">Cerrar Sesión</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="game-container">
+        <div class="game-header">
+            <h1>ESCAPE DE TRON</h1>
+            <div class="game-stats">
+                <div class="stat">
+                    <span class="stat-label">Nivel:</span>
+                    <span id="current-level">1</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Puntuación:</span>
+                    <span id="current-score">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Tiempo:</span>
+                    <span id="game-timer">00:00</span>
+                </div>
+            </div>
+        </div>
+        <div id="login-required" class="login-prompt">
+            <div class="prompt-content">
+                <h2>Acceso Requerido</h2>
+                <p>Debes iniciar sesión para acceder al juego Escape de TRON</p>
+                <button id="prompt-login-btn" class="tron-button">Iniciar Sesión</button>
+            </div>
+        </div>
+        <div id="game-content" class="hidden">
+            <div class="game-area">
+                <div id="challenge-container">
+                    <h2 id="challenge-title">Bienvenido al Grid</h2>
+                    <div id="challenge-description">
+                        <p>Completa los desafíos para escapar del sistema. Cada desafío te acercará más a la libertad.</p>
+                    </div>
+                    <div id="challenge-content">
+                        <!-- Contenido dinámico del desafío -->
+                    </div>
+                    <div class="game-controls">
+                        <button id="start-challenge" class="tron-button">Iniciar Desafío</button>
+                        <button id="submit-answer" class="tron-button hidden">Enviar Respuesta</button>
+                        <button id="next-challenge" class="tron-button hidden">Siguiente Desafío</button>
+                    </div>
+                </div>
+                <div class="game-progress">
+                    <h3>Progreso</h3>
+                    <div id="progress-bar-container">
+                        <div id="progress-bar" class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span id="progress-text">0%</span>
+                    </div>
+                    <div id="completed-challenges" class="challenges-list">
+                        <!-- Lista de desafíos completados -->
+                    </div>
+                </div>
+            </div>
+            <div class="game-leaderboard">
+                <h3>Mejores Jugadores</h3>
+                <div id="leaderboard-content">
+                    <!-- Tabla de líderes -->
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Login -->
+    <div id="login-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username">Usuario:</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Contraseña:</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="tron-button">Entrar al Sistema</button>
+            </form>
+            <p>¿No tienes cuenta? <a href="#" id="show-register">Regístrate</a></p>
+        </div>
+    </div>
+    <!-- Registro -->
+    <div id="register-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Registro de Usuario</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-username">Usuario:</label>
+                    <input type="text" id="register-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Contraseña:</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm">Confirmar Contraseña:</label>
+                    <input type="password" id="register-confirm" required>
+                </div>
+                <button type="submit" class="tron-button">Crear Cuenta</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 TRON Encyclopedia. Todos los derechos reservados.</p>
+            <p>Este sitio es un proyecto fan y no está afiliado con Disney.</p>
+        </div>
+    </footer>
+    <script src="../js/authentication.js"></script>
+    <script src="../js/game.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
