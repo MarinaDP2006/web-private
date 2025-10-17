@@ -1,1 +1,192 @@
-<!-- Crea una pregunta de prueba con su respuesta. -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room TRON</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a1a2a;
+            color: #00ffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: linear-gradient(rgba(10, 26, 42, 0.9), rgba(10, 26, 42, 0.9)), 
+                              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230a1a2a"/><path d="M0 0L100 100M100 0L0 100" stroke="%23005577" stroke-width="1"/></svg>');
+        }
+        
+        .container {
+            background-color: rgba(0, 30, 60, 0.8);
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            padding: 30px;
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        .timer {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        
+        .question-container {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .option {
+            background-color: rgba(0, 60, 120, 0.7);
+            border: 1px solid #00aaff;
+            border-radius: 5px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #ffffff;
+        }
+        
+        .option:hover {
+            background-color: rgba(0, 100, 200, 0.7);
+            transform: translateY(-2px);
+            box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+        }
+        
+        .option.selected {
+            background-color: rgba(0, 150, 255, 0.8);
+            border-color: #00ffff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+        }
+        
+        .button {
+            background-color: #00aaff;
+            color: #0a1a2a;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            margin: 5px;
+        }
+        
+        .button:hover {
+            background-color: #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+        }
+        
+        .button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+        .results {
+            display: none;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .score {
+            font-size: 2rem;
+            color: #ffcc00;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .correct-answer {
+            color: #00ff00;
+        }
+        
+        .wrong-answer {
+            color: #ff5555;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #003366;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: #00aaff;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .question-counter {
+            margin-bottom: 10px;
+            color: #cccccc;
+        }
+        
+        .time-warning {
+            color: #ff5555;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Escape Room TRON</h1>
+        <div class="timer" id="timer">Tiempo: 05:00</div>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <div class="question-counter" id="question-counter">Pregunta 1 de 15</div>
+        
+        <div id="quiz-container">
+            <div class="question-container">
+                <div class="question" id="question"></div>
+                <div class="options" id="options"></div>
+            </div>
+            <button class="button" id="prev-btn" disabled>Anterior</button>
+            <button class="button" id="next-btn">Siguiente</button>
+            <button class="button" id="submit-btn" style="display:none;">Finalizar</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score" id="score"></div>
+            <div id="result-details"></div>
+            <button class="button" id="restart-btn">Jugar de nuevo</button>
+        </div>
+    </div>
+
+    <script src="escape-room.js"></script>
+</body>
+</html>
